@@ -3,6 +3,9 @@ from instagram_private_api import MediaRatios
 from instagram_private_api_extensions import media as IGMedia
 import filetype
 #import urlparse for Python2 and Python3
+import logging
+
+log = logging.getLogger("instapy")
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -18,6 +21,7 @@ class Media(object):
     isLink = False
 
     def __init__(self, file, ratio='post'):
+        log.info("NEW instanceof MEDIA")
         # if file is link
         if urlparse(file).scheme in ('http', 'https'):
             self.media_path = self.downloadMediaFromLink(file)
